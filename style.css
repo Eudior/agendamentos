@@ -7,13 +7,11 @@
     --border-color: #333;
     --accent-color: #9b59b6; /* Roxo/Púrpura */
     --accent-hover: #8e44ad;
+    --danger-color: #c0392b; /* Vermelho para exclusão */
+    --danger-hover: #a93226;
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -22,205 +20,65 @@ body {
     line-height: 1.6;
 }
 
-.container {
-    max-width: 1400px;
-    margin: 20px auto;
-    padding: 20px;
-}
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-header h1 {
-    font-size: 1.8rem;
-}
-
-#add-event-btn {
-    background-color: var(--accent-color);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s;
-}
-
-#add-event-btn:hover {
-    background-color: var(--accent-hover);
-}
+.container { max-width: 1400px; margin: 20px auto; padding: 20px; }
+header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+header h1 { font-size: 1.8rem; }
+#add-event-btn { background-color: var(--accent-color); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 1rem; transition: background-color 0.3s; }
+#add-event-btn:hover { background-color: var(--accent-hover); }
 
 /* Grade do Calendário */
-.calendar-grid {
-    display: grid;
-    grid-template-columns: 60px 1fr; /* Coluna de hora + container dos dias */
-    background-color: var(--primary-color);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.time-column {
-    padding-top: 30px; /* Alinhar com cabeçalho dos dias */
-}
-
-.time-slot {
-    height: 60px; /* 1 hora = 60px */
-    text-align: center;
-    font-size: 0.8rem;
-    color: #888;
-    position: relative;
-}
-
-.time-slot::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: calc(100vw); /* Linha que cruza todos os dias */
-    border-top: 1px solid var(--border-color);
-}
-
-.days-container {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: 30px auto; /* Cabeçalho + área de eventos */
-}
-
-.day-header {
-    text-align: center;
-    font-weight: bold;
-    padding: 5px 0;
-    border-bottom: 1px solid var(--border-color);
-    border-left: 1px solid var(--border-color);
-    font-size: 0.9rem;
-}
-
-.day-column {
-    position: relative;
-    border-left: 1px solid var(--border-color);
-    min-height: 800px; /* Altura mínima para visualização */
-}
+.calendar-grid { display: grid; grid-template-columns: 60px 1fr; background-color: var(--primary-color); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+.time-column { padding-top: 30px; }
+.time-slot { height: 60px; text-align: center; font-size: 0.8rem; color: #888; position: relative; }
+.time-slot::after { content: ''; position: absolute; right: 0; top: 0; width: calc(100vw); border-top: 1px solid var(--border-color); }
+.days-container { display: grid; grid-template-columns: repeat(7, 1fr); grid-template-rows: 30px auto; }
+.day-header { text-align: center; font-weight: bold; padding: 5px 0; border-bottom: 1px solid var(--border-color); border-left: 1px solid var(--border-color); font-size: 0.9rem; }
+.day-column { position: relative; border-left: 1px solid var(--border-color); min-height: 800px; }
 
 /* Estilo dos Eventos */
-.event-item {
-    position: absolute;
-    left: 4px;
-    right: 4px;
-    background-color: var(--accent-color);
-    border-radius: 5px;
-    padding: 8px;
-    color: white;
-    font-size: 0.9rem;
-    overflow: hidden;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.event-item:hover {
-    background-color: var(--accent-hover);
-}
-
-.event-item .title {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
-}
-
-.event-item .address a {
-    color: #f1f1f1;
-    text-decoration: none;
-    display: block;
-    word-wrap: break-word;
-}
-
-.event-item .address a:hover {
-    text-decoration: underline;
-}
-
-.event-item .professionals {
-    position: absolute;
-    bottom: 5px;
-    right: 8px;
-    background-color: rgba(0,0,0,0.2);
-    padding: 2px 6px;
-    border-radius: 3px;
-    font-size: 0.8rem;
-}
-
-.professionals i {
-    margin-right: 4px;
-}
+.event-item { position: absolute; left: 4px; right: 4px; background-color: var(--accent-color); border-radius: 5px; padding: 8px; color: white; font-size: 0.9rem; overflow: hidden; cursor: pointer; transition: background-color 0.3s; }
+.event-item:hover { background-color: var(--accent-hover); }
+.event-item .title { font-weight: bold; display: block; margin-bottom: 5px; }
+.event-item .address a { color: #f1f1f1; text-decoration: none; display: block; word-wrap: break-word; }
+.event-item .address a:hover { text-decoration: underline; }
+.event-item .professionals { position: absolute; bottom: 5px; right: 8px; background-color: rgba(0,0,0,0.2); padding: 2px 6px; border-radius: 3px; font-size: 0.8rem; }
+.professionals i { margin-right: 4px; }
 
 /* Modal e Formulário */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    justify-content: center;
-    align-items: center;
-}
+.modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); justify-content: center; align-items: center; }
+.modal-content { background-color: var(--secondary-color); padding: 25px; border-radius: 8px; width: 90%; max-width: 450px; position: relative; }
+.close-button { position: absolute; top: 10px; right: 15px; font-size: 2rem; color: #aaa; cursor: pointer; }
+.modal-content h2 { margin-bottom: 20px; }
+#event-form label { display: block; margin-bottom: 5px; font-weight: bold; }
+#event-form input { width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 5px; border: 1px solid var(--border-color); background-color: var(--primary-color); color: var(--text-color); font-size: 1rem; }
 
-.modal-content {
-    background-color: var(--secondary-color);
-    padding: 25px;
-    border-radius: 8px;
-    width: 90%;
-    max-width: 450px;
-    position: relative;
+/* Estilo para os botões do formulário */
+.form-buttons {
+    display: flex;
+    gap: 10px; /* Espaço entre os botões */
+    margin-top: 10px;
 }
-
-.close-button {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 2rem;
-    color: #aaa;
-    cursor: pointer;
-}
-
-.modal-content h2 {
-    margin-bottom: 20px;
-}
-
-#event-form label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-#event-form input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    border: 1px solid var(--border-color);
-    background-color: var(--primary-color);
-    color: var(--text-color);
-    font-size: 1rem;
-}
-
-#event-form button {
+.form-buttons button {
     width: 100%;
     padding: 12px;
-    background-color: var(--accent-color);
-    color: white;
     border: none;
     border-radius: 5px;
     font-size: 1.1rem;
     cursor: pointer;
     transition: background-color 0.3s;
 }
-
-#event-form button:hover {
+#save-event-btn {
+    background-color: var(--accent-color);
+    color: white;
+}
+#save-event-btn:hover {
     background-color: var(--accent-hover);
+}
+.delete-btn {
+    background-color: var(--danger-color);
+    color: white;
+    display: none; /* Escondido por padrão */
+}
+.delete-btn:hover {
+    background-color: var(--danger-hover);
 }
