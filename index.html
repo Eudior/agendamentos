@@ -18,7 +18,6 @@
 
         <div class="calendar-grid">
             <div class="time-column">
-                <!-- Horários do dia -->
                 <div class="time-slot">07:00</div>
                 <div class="time-slot">08:00</div>
                 <div class="time-slot">09:00</div>
@@ -34,7 +33,6 @@
                 <div class="time-slot">19:00</div>
             </div>
             <div class="days-container">
-                <!-- Cabeçalho dos dias -->
                 <div class="day-header">SEG</div>
                 <div class="day-header">TER</div>
                 <div class="day-header">QUA</div>
@@ -43,24 +41,26 @@
                 <div class="day-header">SAB</div>
                 <div class="day-header">DOM</div>
 
-                <!-- Colunas para os eventos -->
                 <div class="day-column" id="day-1"></div>
                 <div class="day-column" id="day-2"></div>
                 <div class="day-column" id="day-3"></div>
                 <div class="day-column" id="day-4"></div>
                 <div class="day-column" id="day-5"></div>
                 <div class="day-column" id="day-6"></div>
-                <div class="day-column" id="day-0"></div> <!-- Domingo é o dia 0 -->
+                <div class="day-column" id="day-0"></div>
             </div>
         </div>
     </div>
 
-    <!-- Modal para Adicionar Evento -->
+    <!-- Modal para Adicionar/Editar Evento -->
     <div id="event-modal" class="modal">
         <div class="modal-content">
             <span class="close-button">&times;</span>
-            <h2>Novo Agendamento</h2>
+            <h2 id="modal-title">Novo Agendamento</h2>
             <form id="event-form">
+                <!-- Campo escondido para saber qual evento estamos editando -->
+                <input type="hidden" id="event-id">
+
                 <label for="event-title">Título:</label>
                 <input type="text" id="event-title" required>
 
@@ -76,7 +76,10 @@
                 <label for="event-professionals">Quantidade de Profissionais:</label>
                 <input type="number" id="event-professionals" min="1" required>
 
-                <button type="submit">Agendar</button>
+                <div class="form-buttons">
+                    <button type="submit" id="save-event-btn">Agendar</button>
+                    <button type="button" id="delete-event-btn" class="delete-btn">Excluir</button>
+                </div>
             </form>
         </div>
     </div>
